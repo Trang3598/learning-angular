@@ -1,0 +1,8 @@
+<ng-container *ngFor="let question of questions">
+  <div class="question-group bg-white border-radius-bot border-radius-top">
+    <span class="question" *ngIf="question.name">{{ question.id + 1 }}. {{ question.name }}</span>
+    <div class="option">
+      <app-option [type]="question.type" [options]="question.options" [questionID]="question.id"></app-option>
+    </div>
+  </div>
+</ng-container>

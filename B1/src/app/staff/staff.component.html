@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <h3 class="mat-title">
+      Danh sách nhân viên
+    </h3>
+  </div>
+  <div class="panel-body">
+    <button class="btn btn-primary" (click)="openDialog()">Thêm</button>
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Ảnh đại diện</th>
+        <th colspan="2">Thao tác</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let staff of staffs">
+        <td>{{staff.id}}</td>
+        <td>{{staff.name}}</td>
+        <td><img src="{{staff.avatar}}"></td>
+        <td><button class="btn btn-success" (click)="edit()">Sửa</button></td>
+        <td><button class="btn btn-danger">Xóa</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div>
+  <button (click)="firstPage()"> First</button>
+  <button (click)="previousPage()"> Previous</button>
+  <button (click)="nextPage()"> Next</button>
+  <button (click)="lastPage()"> Last</button>
+</div>

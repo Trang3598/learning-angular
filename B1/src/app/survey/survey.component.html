@@ -1,0 +1,14 @@
+<div class="main">
+  <div class="container pt-5">
+    <div class="bot border-radius-top"></div>
+    <div class="bg-white border-radius-bot info">
+      <h1 *ngIf="surveys[0].name">{{surveys[0].name }}</h1>
+      <p>Từ {{ surveys[0].start_date.substring(0, 10) }} - {{ surveys[0].end_date.substring(0, 10)}}</p>
+    </div>
+    <form>
+      <app-question></app-question>
+      <button mat-button class="btn-submit">Gửi</button>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,20 @@
+.bot {
+  background: #5b28b5;
+  height: 10px;
+}
+
+.info {
+  padding: 30px;
+}
+
+.info h1 {
+  margin: 0;
+}
+
+.btn-submit {
+  padding: 0 20px;
+  margin-top: 30px;
+  background: #5b28b5;
+  font-weight: bold;
+  color: #ffffff;
+}

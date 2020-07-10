@@ -1,0 +1,14 @@
+<div class="border-bottom d-inline-block" *ngIf="type != 2">
+  <ng-container *ngIf="optionID != undefined && questionID != undefined">
+      <span (click)="showListPeople(questionID)" class="text-danger">Có {{countUser(questionID)}}
+        người đã trả lời</span>
+  </ng-container>
+</div>
+<div class="border-bottom " *ngIf="type==2">
+  <div class="row">
+    <ng-container *ngIf="questionID != undefined">
+      <span class="text-danger" (click)="showListPeople(questionID)">Có {{countUser(questionID)}}
+        người đã trả lời</span>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Tên nhân viên">
+  </mat-form-field>
+  <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}"/>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="mat-raised-button mat-warn" (click)="closeDialog()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>
