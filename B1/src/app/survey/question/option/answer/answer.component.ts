@@ -2,15 +2,16 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 import {AnswersService} from "../../../../services/answer/answers.service";
-import {StaffService} from "../../../../services/staff/staff.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {ListUserComponent} from "./list-user/list-user.component";
+import {StaffService} from "../../../../services/staff/staff.service";
 
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.css']
 })
+
 export class AnswerComponent implements OnInit, OnDestroy {
 
   answers = [];
@@ -25,9 +26,11 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.answersService.sendGetRequest().pipe(takeUntil(this.destroy$)).subscribe((data: any[]) => {
       this.answers = data;
+    })
+    this.staffService.sendGetRes().pipe(takeUntil(this.destroy$)).subscribe((listStaffs: any[]) => {
+      this.users = listStaffs
     })
   }
 
@@ -44,12 +47,25 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   showListPeople(questionId: number) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px'
-    this.dialog.open(ListUserComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ListUserComponent,
+      {
+        width: '500px',
+        height: '500px',
+        data: this.getUsers()
+      });
 
+  }
+
+  getUsers() {
+    const array = [];
+    this.answers.forEach(element => {
+      this.users.forEach(item => {
+        if (element.user_id == item.id) {
+          array.push(item);
+        }
+      })
+    });
+    return array;
   }
 
   ngOnDestroy() {

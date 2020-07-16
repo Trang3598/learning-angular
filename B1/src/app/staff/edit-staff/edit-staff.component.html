@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Tên nhân viên" value="{{data.staffName}}">
+  </mat-form-field>
+  <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}"/>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Đóng</button>
+  <button mat-button cdkFocusInitial>Lưu</button>
+</div>

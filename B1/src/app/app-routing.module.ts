@@ -6,11 +6,11 @@ import {StaffComponent} from "./staff/staff.component";
 import {SurveyComponent} from "./survey/survey.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'surveys', pathMatch: 'full'},
-  {path: 'surveys', component: SurveyComponent},
+  {path: '', redirectTo: 'khao-sat', pathMatch: 'full'},
+  {path: 'khao-sat', component: SurveyComponent},
   {path: 'questions', component: QuestionComponent},
   {path: 'answers', component: AnswerComponent},
-  {path: 'staffs', component: StaffComponent}
+  {path: 'danh-sach-nhan-vien', component: StaffComponent}
 ];
 
 @NgModule({

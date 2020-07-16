@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {throwError} from 'rxjs';
 import {retry, catchError, tap} from 'rxjs/operators';
 
@@ -15,7 +15,6 @@ export class StaffService {
   public prev: string = "";
   public next: string = "";
   public last: string = "";
-  private staffs: any;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -59,9 +58,12 @@ export class StaffService {
       params: new HttpParams({fromString: "_page=1&_limit=20"}),
       observe: "response",
     }).pipe(retry(4), catchError(this.handleError), tap(res => {
-      console.log(res.headers)
       this.parseLinkHeader(res.headers.get('Link'));
     }));
+  }
+
+  public sendGetRes() {
+    return this.httpClient.get(this.REST_API_SERVER).pipe(retry(3), catchError(this.handleError));
   }
 
   public sendGetRequestToUrl(url: string) {

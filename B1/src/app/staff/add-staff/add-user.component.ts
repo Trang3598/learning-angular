@@ -8,7 +8,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class AddUserComponent implements OnInit {
   @Input() accept = 'image/*';
-  @Input() title = 'Thêm sinh viên';
+  @Input() title = 'Thêm nhân viên';
 
   constructor(private dialogRef: MatDialogRef<AddUserComponent>) {
   }

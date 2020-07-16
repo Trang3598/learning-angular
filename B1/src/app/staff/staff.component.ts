@@ -1,10 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {StaffService} from "../services/staff/staff.service";
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {AddUserComponent} from "../add-user/add-user.component";
+import {MatDialog} from '@angular/material/dialog';
+import {AddUserComponent} from "./add-staff/add-user.component";
+import {EditStaffComponent} from "./edit-staff/edit-staff.component";
 
 @Component({
   selector: 'app-staff',
@@ -13,6 +14,8 @@ import {AddUserComponent} from "../add-user/add-user.component";
 })
 export class StaffComponent implements OnInit, OnDestroy {
   staffs = [];
+  result: string;
+  @Input() staff_id: number;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private staffService: StaffService, private dialog: MatDialog) {
@@ -20,7 +23,6 @@ export class StaffComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.staffService.sendGetRequest().pipe(takeUntil(this.destroy$)).subscribe((res: HttpResponse<any>) => {
-      console.log(res);
       this.staffs = res.body;
     })
   }
@@ -66,14 +68,28 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px'
-    this.dialog.open(AddUserComponent, dialogConfig);
+    this.dialog.open(AddUserComponent,
+      {
+        width: '400px',
+        height: '250px',
+      });
   }
 
-  edit() {
-    this.openDialog();
+  edit(id: number) {
+    this.dialog.open(EditStaffComponent,
+      {
+        width: '400px',
+        height: '250px',
+        data: {staffName: this.getNameStaff(id)}
+      });
+  }
+
+  getNameStaff(id_staff: number) {
+    this.staffs.forEach(element => {
+      if (element.id === id_staff) {
+        this.result = element.name
+      }
+    })
+    return this.result;
   }
 }

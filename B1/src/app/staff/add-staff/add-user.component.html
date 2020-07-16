@@ -5,7 +5,7 @@
   </mat-form-field>
   <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}"/>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button class="mat-raised-button mat-warn" (click)="closeDialog()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
-</mat-dialog-actions>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Đóng</button>
+  <button mat-button cdkFocusInitial>Lưu</button>
+</div>

@@ -14,13 +14,14 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {AddUserComponent} from './add-user/add-user.component';
+import {AddUserComponent} from "./staff/add-staff/add-user.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {OptionComponent} from './survey/question/option/option.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { ListUserComponent} from "./survey/question/option/answer/list-user/list-user.component";
+import { EditStaffComponent} from "./staff/edit-staff/edit-staff.component";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ListUserComponent} from "./survey/question/option/answer/list-user/list
     AddUserComponent,
     OptionComponent,
     ListUserComponent,
+    EditStaffComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {AddUserComponent} from "../../../../../add-user/add-user.component";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list-user',
@@ -8,8 +7,9 @@ import {AddUserComponent} from "../../../../../add-user/add-user.component";
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
+  staffs = [];
 
-  constructor(private dialogRef: MatDialogRef<AddUserComponent>) {
+  constructor(private dialogRef: MatDialogRef<ListUserComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
@@ -19,7 +19,4 @@ export class ListUserComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getListUser() {
-
-  }
 }
