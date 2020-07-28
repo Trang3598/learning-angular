@@ -1,0 +1,86 @@
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" class="form-control" [(ngModel)]="name" name="name">
+  </label>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.name?.hasError('required')
+         && addUserForm.controls.name?.touched;">
+    Name is required!
+  </div>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.name?.hasError('minlength')
+         && addUserForm.controls.name?.touched;">
+    The name must be longer than 6 characters!
+  </div>
+  <label>
+    Email:
+    <input type="text" formControlName="email" class="form-control" [(ngModel)]="email" name="email">
+  </label>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.email?.hasError('required')
+         && addUserForm.controls.email?.touched;">
+    Email is required!
+  </div>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.email?.hasError('email')
+         && addUserForm.controls.email?.touched;">
+    The email must be a valid email address
+  </div>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.email.getError('duplicatedEmail')
+         && addUserForm.controls.email?.touched;">
+    Email already exists!
+  </div>
+  <label>
+    Password:
+    <input type="password" formControlName="password" class="form-control" [(ngModel)]="password" name="password">
+  </label>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.password?.hasError('required')
+         && addUserForm.controls.password?.touched;">
+    Password is required!
+  </div>
+  <div class="col-4 alert alert-danger" role="alert"
+       *ngIf="addUserForm.controls.password?.hasError('minlength')
+         && addUserForm.controls.password?.touched;">
+    The password must be longer than 6 characters!
+  </div>
+  <button class="btn btn-primary" id="btn-addUser" (click)="addUser(name,email,password)">Add</button>
+</form>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions</th>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" id="edit-item" (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button color="accent" id="delete-item" (click)="delete(element.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator>
+</div>
+

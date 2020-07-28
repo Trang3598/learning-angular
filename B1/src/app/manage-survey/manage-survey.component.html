@@ -1,0 +1,30 @@
+<div class="container bg-white mt-5 p-3">
+  <div class="d-inline-block float-left">
+    <h1 class="">Danh sách khảo sát</h1>
+  </div>
+  <div class="float-right pt-2">
+    <button mat-button class="btn-success" routerLink="/them-viec-khao-sat">Thêm</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên cuộc khảo sát</th>
+      <th colspan="2">Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let survey of surveys;let i = index">
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>
+          <div>{{ survey.name }}</div>
+        </td>
+        <td><button class="btn btn-info" routerLink="/sua-cong-viec-khao-sat">Sửa</button></td>
+        <td><button class="btn btn-dark">Xóa</button></td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>

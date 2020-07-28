@@ -1,0 +1,52 @@
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" class="form-control" name="name">
+    <input type="hidden" class="form-control" name="id" value="{{data.id}}" [(ngModel)]="id">
+  </label>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.name?.hasError('required')
+         && editUserForm.controls.name?.touched;">
+    Name is required!
+  </div>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.name?.hasError('minlength')
+         && editUserForm.controls.name?.touched;">
+    The name must be longer than 6 characters!
+  </div>
+  <label>
+    Email:
+    <input type="text" formControlName="email" class="form-control" name="email" [(ngModel)]="email"
+           value="{{data.email}}">
+  </label>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.email?.hasError('required')
+         && editUserForm.controls.email?.touched;">
+    Email is required!
+  </div>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.email?.hasError('email')
+         && editUserForm.controls.email?.touched;">
+    The email must be a valid email address
+  </div>
+  <label>
+    Password:
+    <input type="password" formControlName="password" class="form-control" name="password" [(ngModel)]="password"
+           value="{{data.password}}">
+  </label>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.password?.hasError('required')
+         && editUserForm.controls.password?.touched;">
+    Password is required!
+  </div>
+  <div class="col-7 alert alert-danger" role="alert"
+       *ngIf="editUserForm.controls.password?.hasError('minlength')
+         && editUserForm.controls.password?.touched;">
+    The password must be longer than 6 characters!
+  </div>
+  <div>
+    <button class="btn btn-primary" id="btn-addUser" (click)="updateUser(id,name, email,password)" type="submit">Update
+    </button>
+  </div>
+</form>
+

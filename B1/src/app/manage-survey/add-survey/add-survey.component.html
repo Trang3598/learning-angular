@@ -1,0 +1,113 @@
+<div class="container bg-white mt-5 p-lg-5">
+  <div class="bg-white container mt-10 p-lg-5">
+    <h3>Thông tin cuộc khảo sát</h3>
+    <form class="add_survey_form" #addSurveyForm="ngForm" (ngSubmit)="submitSurveyForm(addSurveyForm.value)">
+      <ng-container>
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên cuộc khảo sát</mat-label>
+            <input matInput name="survey_name" ngModel #survey_name="ngModel" required minlength="4">
+          </mat-form-field>
+          <mat-error *ngIf="survey_name.invalid && (survey_name.dirty || survey_name.touched)"
+                     id="survey_name" style="color: red">
+            <mat-error *ngIf="survey_name.errors.required">
+              Tên cuộc khảo sát không được để trống
+            </mat-error>
+            <mat-error *ngIf="survey_name.errors.minlength">
+              Tên cuộc khảo sát phải có nhiều hơn 4 kí tự
+            </mat-error>
+          </mat-error>
+        </div>
+        <div>
+          <mat-form-field color="accent" appearance="fill">
+            <mat-label>Ngày bắt đầu</mat-label>
+            <input matInput [matDatepicker]="picker1" name="startDate" ngModel #startDate="ngModel" required
+                   appForbiddenName="bod">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-error *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"
+                     id="startDate">
+            <mat-error *ngIf="startDate.errors.required">
+              Ngày bắt đầu không được bỏ trống
+            </mat-error>
+            <mat-error>
+
+            </mat-error>
+          </mat-error>
+
+          <span style="padding: 20px">đến</span>
+
+          <mat-form-field color="accent" appearance="fill">
+            <mat-label>Ngày kết thúc</mat-label>
+            <input matInput [matDatepicker]="picker2" name="endDate" ngModel #endDate="ngModel" required>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+          </mat-form-field>
+          <mat-error *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"
+                     id="endDate" style="color: red">
+            <mat-error *ngIf="endDate.errors.required">
+              Ngày kết thúc không được bỏ trống
+            </mat-error>
+          </mat-error>
+        </div>
+
+        <h3>Thêm các câu hỏi</h3>
+        <div *ngFor="let question of questions; let i = index;">
+          <mat-form-field>
+            <mat-label>Tên câu hỏi</mat-label>
+            <input matInput type="text" ngModel name="question" #questionName="ngModel" minlength="4" required>
+          </mat-form-field>
+          <mat-error *ngIf="questionName.invalid && (questionName.dirty || questionName.touched)"
+                     id="question" style="color: red">
+            <mat-error *ngIf="questionName.errors.required">
+              Tên câu hỏi không được để trống
+            </mat-error>
+            <mat-error *ngIf="questionName.errors.minlength">
+              Câu hỏi phải có nhiều hơn 4 kí tự
+            </mat-error>
+          </mat-error>
+          <mat-label>Thế loại câu hỏi</mat-label>
+          <div>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="questions[i].question" name="type">
+              <mat-radio-button value="1">Loại 1</mat-radio-button>
+              <mat-radio-button value="2">Loại 2</mat-radio-button>
+              <mat-radio-button value="3">Loại 3</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="ml-3" *ngFor="let dynamic of dynamicArray; let j = index;">
+            <mat-form-field class="example-full-width" style="width: 70%">
+              <mat-label>Tên lựa chọn</mat-label>
+              <input matInput [(ngModel)]="dynamicArray[j].option" required name="option" minlength="4" required
+                     #option="ngModel">
+            </mat-form-field>
+            <mat-error *ngIf="option.invalid && (option.dirty || option.touched)"
+                       id="option" style="color: red">
+              <mat-error *ngIf="option.errors.required">
+                Tên lựa chọn không được để trống
+              </mat-error>
+              <mat-error *ngIf="option.errors.minlength">
+                lựa chọn phải có nhiều hơn 4 kí tự
+              </mat-error>
+            </mat-error>
+            <button mat-flat-button color="warn" (click)="removeOption(j)">Xóa lựa chọn
+            </button>
+            <button mat-flat-button color="primary" (click)="addOption(j)" style="margin-left: 20px">Thêm lựa chọn
+            </button>
+          </div>
+          <div style="margin-top: 30px">
+            <button mat-flat-button color="primary" (click)="addQuestion(i)">Thêm câu hỏi khác</button>
+            <button mat-flat-button color="warn" style="margin-left: 20px" (click)="removeQuestion(i)">Xóa câu hỏi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <br>
+      <button type="submit" class="btn btn-success" routerLink="/quan-li-cong-viec-khao-sat">Trở về</button>
+      <button type="submit" class="btn btn-danger" style="margin-left: 20px">Lưu</button>
+    </form>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

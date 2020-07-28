@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+#edit-item{
+  margin-right: 20px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+}
+
+label {
+  display: block;
+  width: 31.5em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+}
+#btn-addUser{
+  margin-bottom: 20px;
+}

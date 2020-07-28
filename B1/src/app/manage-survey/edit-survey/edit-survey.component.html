@@ -1,0 +1,74 @@
+<div class="container bg-white mt-5 p-lg-5">
+  <div class="bg-white container mt-10 p-lg-5">
+    <h3>Thông tin cuộc khảo sát</h3>
+    <form class="example-form">
+      <table class="table">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" style="width: 550px">
+              <mat-label>Tên cuộc khảo sát</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field color="accent" appearance="fill">
+              <mat-label>Ngày bắt đầu</mat-label>
+              <input matInput [matDatepicker]="picker1">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <span style="padding: 20px">đến</span>
+            <mat-form-field color="accent" appearance="fill">
+              <mat-label>Ngày kết thúc</mat-label>
+              <input matInput [matDatepicker]="picker2">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+        <h3>Thêm các câu hỏi</h3>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" style="width: 550px">
+              <mat-label>Tên câu hỏi</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </td>
+        </tr>
+        <mat-label>Thế loại câu hỏi</mat-label>
+        <tr>
+          <td>
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="1">Loại 1</mat-radio-button>
+              <mat-radio-button value="2">Loại 2</mat-radio-button>
+              <mat-radio-button value="3">Loại 3</mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+          <button mat-flat-button color="primary">Thêm lựa chọn</button>
+          <button mat-flat-button color="warn" style="margin-left: 20px">Xóa</button>
+        </tr>
+        <tr>
+          <mat-form-field class="example-full-width" style="width: 550px">
+            <mat-label>Tên lựa chọn</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <button mat-flat-button color="primary">Thêm câu hỏi khác</button>
+          <button mat-flat-button color="warn" style="margin-left: 20px">Xóa câu hỏi</button>
+        </tr>
+      </table>
+      <br>
+      <button type="submit" class="btn btn-success" routerLink="/quan-li-cong-viec-khao-sat">Trở về</button>
+      <button type="submit" class="btn btn-danger" style="margin-left: 20px">Lưu</button>
+    </form>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
