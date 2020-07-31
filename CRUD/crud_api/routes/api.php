@@ -36,9 +36,10 @@ Route::delete('danh-sach-danh-muc/{id}', 'CategoryController@destroy');
 Route::put('danh-sach-danh-muc/{id}', 'CategoryController@update');
 Route::post('danh-sach-the-loai', 'CategoryController@store');
 
-Route::post('signup', 'AuthController@register'); Route::post('login', 'AuthController@login');
+Route::post('dang-ki', 'AuthController@register');
+Route::post('dang-nhap', 'AuthController@login');
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('auth', 'AuthController@user');
-    Route::post('logout', 'AuthController@logout');
+    Route::post('dang-xuat', 'AuthController@logout');
 });
 Route::middleware('jwt.refresh')->get('/token/refresh', 'AuthController@refresh');

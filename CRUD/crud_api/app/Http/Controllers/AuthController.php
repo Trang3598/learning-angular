@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -48,7 +48,8 @@ class AuthController extends Controller
         return response(null, Response::HTTP_BAD_REQUEST);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $this->validate($request, ['token' => 'required']);
 
         try {
