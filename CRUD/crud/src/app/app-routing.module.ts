@@ -4,12 +4,14 @@ import {DefaultComponent} from "./layouts/default/default.component";
 import {NotFoundComponent} from "./modules/not-found/not-found.component";
 import {RegisterComponent} from "./modules/register/register.component";
 import {LoginComponent} from "./modules/login/login.component";
+import {AuthGuard} from "./helpers/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
   {path: 'dang-ki', component: RegisterComponent},
   {path: 'dang-nhap', component: LoginComponent},

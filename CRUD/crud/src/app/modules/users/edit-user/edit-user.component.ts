@@ -28,27 +28,26 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  closeDialog() {
+  closeDialog(): void{
     this.dialogRef.close();
   }
 
   updateUser(id: number, name: string, email: string, password: string) {
-    console.log(name)
+    console.log(name);
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
     if (!id && !name && !email && !password) {
-      return;
+      this.apiService.updateUser({id, name, email, password} as User).subscribe(res => {
+        this.closeDialog();
+      }, error => {
+        console.log(error);
+      });
     }
-    this.apiService.updateUser({id, name, email, password} as User).subscribe(res => {
-      this.closeDialog()
-    }, error => {
-      console.log(error)
-    })
   }
 
-  onSubmit() {
-    console.log(this.editUserForm)
+  onSubmit(): void {
+    console.log(this.editUserForm);
   }
 }

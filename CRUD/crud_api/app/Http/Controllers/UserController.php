@@ -111,7 +111,7 @@ class UserController extends Controller
         return response()->json(compact('user', 'token'), 201);
     }
 
-    public function getAuthenticatedUser()
+    public function getAuthenticatedUser(Request $request)
     {
         try {
 
@@ -147,4 +147,5 @@ class UserController extends Controller
             return response()->json('Failed to logout, please try again.', Response::HTTP_BAD_REQUEST);
         }
     }
+
 }

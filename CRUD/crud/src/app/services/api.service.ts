@@ -136,6 +136,14 @@ export class ApiService {
         catchError(this.handleError<Post[]>('getPosts', []))
       );
   }
+
+  getAuthenticateUser(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.PHP_API_SERVER}/get-user`)
+      .pipe(
+        tap(_ => this.log('fetched user authenticate')),
+        catchError(this.handleError<User[]>('getUserLogin', []))
+      );
+  }
 }
 
 

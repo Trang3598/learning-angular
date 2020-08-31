@@ -35,7 +35,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
   ],
-  bootstrap: [AppComponent,]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

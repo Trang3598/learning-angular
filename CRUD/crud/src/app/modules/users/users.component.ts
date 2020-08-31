@@ -41,17 +41,18 @@ export class UsersComponent implements OnInit {
     email = this.email;
     password = this.password;
     if (!name && !email && !password) {
-      return;
+      this.apiService.addUser({name, password, email} as User)
+        .subscribe(user => {
+          this.users.push(user);
+          alert('Add successfully');
+          this.showUsers();
+          this.addUserForm.reset();
+        }, error => {
+          console.log(error);
+        });
+    } else {
+      window.alert('Add failed! Please check your information again');
     }
-    this.apiService.addUser({name, password, email} as User)
-      .subscribe(user => {
-        console.log(user)
-        this.users.push(user);
-        alert('Add successfully');
-        this.showUsers();
-      }, error => {
-        console.log(error);
-      });
   }
 
   showUsers(): void {
@@ -82,11 +83,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.addUserForm);
-  }
-
-  closeDialog() {
-
   }
 }
