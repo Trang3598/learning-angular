@@ -36,10 +36,12 @@ Route::delete('danh-sach-danh-muc/{id}', 'CategoryController@destroy');
 Route::put('danh-sach-danh-muc/{id}', 'CategoryController@update');
 Route::post('danh-sach-the-loai', 'CategoryController@store');
 
-Route::post('dang-ki', 'AuthController@register');
-Route::post('dang-nhap', 'AuthController@login');
-Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::get('auth', 'AuthController@user');
-    Route::post('dang-xuat', 'AuthController@logout');
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@authenticate');
+Route::get('open', 'DataController@open');
+Route::post('logout', 'UserController@logout');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('closed', 'DataController@closed');
 });
-Route::middleware('jwt.refresh')->get('/token/refresh', 'AuthController@refresh');

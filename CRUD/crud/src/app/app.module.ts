@@ -11,6 +11,7 @@ import {LoginComponent} from "./modules/login/login.component";
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {ReactiveFormsModule} from "@angular/forms";
+// import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
+    // ReactiveFormsModule,
 
   ],
   providers: [

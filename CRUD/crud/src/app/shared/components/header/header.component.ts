@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleSideBar() {
+  toggleSideBar(): void {
     this.toggle.emit();
   }
 
-  logout() {
+  logout(): void {
     this.authenticationService.logout();
     this.router.navigate(['/dang-nhap']);
   }

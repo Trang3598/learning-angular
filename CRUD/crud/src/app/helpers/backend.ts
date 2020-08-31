@@ -1,4 +1,3 @@
-import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpResponse,
@@ -29,8 +28,8 @@ export class Backend implements HttpInterceptor {
 
     function getListUser(): void {
       this.apiService.getUsers().subscribe(users => {
-        this.users = users
-      })
+        this.users = users;
+      });
     }
 
     function handleRoute() {
@@ -56,7 +55,7 @@ export class Backend implements HttpInterceptor {
         username: user.name,
         email: user.email,
         token: 'fake-jwt-token'
-      })
+      });
     }
 
     function getUsers() {
@@ -67,7 +66,7 @@ export class Backend implements HttpInterceptor {
     // helper functions
 
     function ok(body?) {
-      return of(new HttpResponse({status: 200, body}))
+      return of(new HttpResponse({status: 200, body}));
     }
 
     function error(message) {

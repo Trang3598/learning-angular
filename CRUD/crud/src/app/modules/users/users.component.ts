@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
       name: this.fb.control('', [Validators.required, Validators.minLength(6)]),
       password: this.fb.control('', [Validators.required, Validators.minLength(6)]),
       email: this.fb.control('', [Validators.required, Validators.email], [uniqueValidator(this.apiService)])
-    })
+    });
   }
 
   addUser(name: string, password: string, email: string): void {
@@ -45,8 +45,9 @@ export class UsersComponent implements OnInit {
     }
     this.apiService.addUser({name, password, email} as User)
       .subscribe(user => {
+        console.log(user)
         this.users.push(user);
-        alert("Add successfully")
+        alert('Add successfully');
         this.showUsers();
       }, error => {
         console.log(error);
@@ -55,13 +56,13 @@ export class UsersComponent implements OnInit {
 
   showUsers(): void {
     this.apiService.getUsers().subscribe(users => {
-      this.users = users
+      this.users = users;
       this.dataSource.data = users;
-    })
+    });
   }
 
   edit(user: User): void {
-    console.log(user)
+    console.log(user);
     const dialogRef = this.dialog.open(EditUserComponent, {
         width: '400px',
         data: user
@@ -77,12 +78,12 @@ export class UsersComponent implements OnInit {
       this.showUsers();
       alert('Delete successfully');
     }, error => {
-      console.log(error)
+      console.log(error);
     });
   }
 
   onSubmit() {
-    console.log(this.addUserForm)
+    console.log(this.addUserForm);
   }
 
   closeDialog() {

@@ -1,8 +1,8 @@
 <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
   <label>
     Name:
-    <input type="text" formControlName="name" class="form-control" name="name">
-    <input type="hidden" class="form-control" name="id" value="{{data.id}}" [(ngModel)]="id">
+    <input type="text" formControlName="name" class="form-control" name="name" value="{{data.name}}">
+<!--    <input type="hidden" class="form-control" name="id" value="{{data.id}}" [(ngModel)]="id">-->
   </label>
   <div class="col-7 alert alert-danger" role="alert"
        *ngIf="editUserForm.controls.name?.hasError('required')

@@ -6,6 +6,7 @@ import {UsersComponent} from "../users/users.component";
 import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {EditUserComponent} from "../users/edit-user/edit-user.component";
 import {MaterialModule} from "../../shared/material/material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MaterialModule} from "../../shared/material/material.module";
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule {
